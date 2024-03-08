@@ -16,7 +16,7 @@
 
 # Disable CGO so that we always generate static binaries:
 export CGO_ENABLED=0
-export version=""
+export version="v2.1"
 
 ifeq ($(shell go env GOOS),windows)
 	BINARY=terraform-provider-rhcs.exe
@@ -31,12 +31,14 @@ GO_ARCH=$(shell go env GOARCH)
 TARGET_ARCH=$(shell go env GOOS)_${GO_ARCH}
 
 # Import path of the project:
-import_path:=github.com/terraform-redhat/terraform-provider-rhcs
+import_path:=github.com/jinqi7/terraform-provider-rhcs
 
 # Version of the project:
-version=$(shell git describe --abbrev=0 | sed 's/^v//' | sed 's/-prerelease\.[0-9]*//')
-commit:=$(shell git rev-parse --short HEAD)
-git_status:=$(shell git status --porcelain)
+#version=$(shell git describe --abbrev=0 | sed 's/^v//' | sed 's/-prerelease\.[0-9]*//')
+version=2.1
+#commit:=$(shell git rev-parse --short HEAD)
+commit:=c46eea0
+#git_status:=$(shell git status --porcelain)
 REL_VER=$(version)
 
 # Set the linker flags so that the version will be included in the binaries:
